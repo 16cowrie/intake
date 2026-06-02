@@ -14,6 +14,7 @@
     --blue: #12a9e8;
     --white: #fff;
     --muted: #ccc;
+    --gold: #d8b65a;
   }
 
   body {
@@ -70,6 +71,46 @@
   form h2 {
     margin-top: 0;
     color: var(--blue);
+  }
+
+  .form-section {
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 22px;
+    background: #101010;
+  }
+
+  .form-section.seeker {
+    border-color: var(--blue);
+  }
+
+  .form-section.diviner {
+    border-color: var(--red);
+  }
+
+  .form-section h3 {
+    margin-top: 0;
+    color: var(--gold);
+    font-size: 1.25rem;
+  }
+
+  .section-note {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    margin-bottom: 12px;
+  }
+
+  .do-not-write {
+    background: #250000;
+    color: #fff;
+    border: 2px solid var(--red);
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    margin: 18px 0;
   }
 
   label {
@@ -189,6 +230,7 @@
     font-size: 1.05rem;
     line-height: 1.55;
     color: #f5f5f5;
+    white-space: pre-line;
   }
 
   .copyright {
@@ -260,73 +302,103 @@
 
     <!-- INTAKE FORM -->
     <form id="intakeForm">
-      <h2>Intake Information</h2>
+      <h2>SGI Intake Form</h2>
 
-      <label>Seeker / Initiate Name</label>
-      <input type="text" id="seekerName" placeholder="Example: Baba SwamiG" />
-      
-      <label>Seeker / Initiate Birth Date, time and location</label>
-        <input type="text" id="seekerBirth" placeholder="Example: July 19. 2001@ 4am in Chicago, IL" />
+      <!-- SEEKER SECTION -->
+      <div class="form-section seeker">
+        <h3>Section One: For the Seeker</h3>
+        <p class="section-note">
+          This section is completed by the seeker, Iyawo, initiate, or student before divination.
+          It provides the basic identity and spiritual focus for the consultation.
+        </p>
 
+        <label>Seeker / Initiate Name</label>
+        <input type="text" id="seekerName" placeholder="Example: Baba SwamiG" />
+        
+        <label>Seeker / Initiate Birth Date, Time and Location</label>
+        <input type="text" id="seekerBirth" placeholder="Example: July 19, 2001 @ 4am in Chicago, IL" />
 
-      <label>Divination Category Sought</label>
-      <select id="oracleCategory">
-        <option>Khemetic Incarnation Objective</option>
-        <option>Ifa Head Orisha/Odu</option>
-        <option>Ifa Support Orisha/Odu</option>
-        <option>Ileke Initiation</option>
-        <option>Warrior Initiation</option>
-        <option>Hand of Ifa</option>
+        <label>Divination Category Sought</label>
+        <select id="oracleCategory">
+          <option>Khemetic Incarnation Objective</option>
+          <option>Ifa Head Orisha/Odu</option>
+          <option>Ifa Support Orisha/Odu</option>
+          <option>Ileke Initiation</option>
+          <option>Warrior Initiation</option>
+          <option>Hand of Ifa</option>
+          <option>Priesthood</option>
+        </select>
 
-        <option>Priesthood</option>
+        <label>Ileke / Warrior / Hand of Ifa / Other Initiation Status</label>
+        <input type="text" id="ileke" placeholder="Example: Ileke / Supportive / Warriors / Hand of Ifa" />
 
-      </select>
+        <label>Primary Question or Reason for Seeking Divination</label>
+        <textarea id="seekerQuestion" placeholder="Example: I am seeking guidance regarding initiation, destiny, Orisha alignment, family, health, work, or spiritual direction."></textarea>
 
-      <label>Ileke/Warrior or other Initiation Status</label>
-      <input type="text" id="ileke" placeholder="Example: Ileke / Supportive / Warriors / Hand of Ifa" />
+        <label>Consent and Understanding</label>
+        <select id="seekerConsent">
+          <option>I understand this is spiritual guidance and does not replace medical, legal, or financial advice.</option>
+          <option>I need this explained before proceeding.</option>
+        </select>
+      </div>
 
------------------  DO NOT WRITE BELOW ----------------- Click the generate button below----------
-  
-      <label>Orunmila Heading</label>
-      <input type="text" id="orunmilaHeading" value="Orunmila" />
+      <!-- DIVINER SECTION -->
+      <div class="form-section diviner">
+        <h3>Section Two: For the Diviner</h3>
+        <p class="section-note">
+          This section is completed by the diviner after prayer, casting, confirmation, and interpretation.
+        </p>
 
-      <label>Primary Odu</label>
-      <input type="text" id="primaryOdu" placeholder="Example: Obara / Irete" />
+        <div class="do-not-write">
+          DO NOT WRITE BELOW — DIVINER USE ONLY
+          <br>
+          Click the Generate Destiny Table button after diviner fields are completed.
+        </div>
 
-      <label>Supporting Odu / Composite Odu</label>
-      <textarea id="supportingOdu" placeholder="Example: Obara/Irete IRE (Irete Meji / Osa Ogunda)"></textarea>
+        <label>Orunmila Heading</label>
+        <input type="text" id="orunmilaHeading" value="Orunmila" />
 
-      <label>Khemetic Heading</label>
-      <input type="text" id="khemeticHeading" value="Tehuti" />
+        <label>Primary Odu</label>
+        <input type="text" id="primaryOdu" placeholder="Example: Obara / Irete" />
 
-      <label>Khemetic Pair / Polarity</label>
-      <input type="text" id="khemeticPair" placeholder="Example: Amen(-) / Sebek(+)" />
+        <label>Supporting Odu / Composite Odu</label>
+        <textarea id="supportingOdu" placeholder="Example: Obara/Irete IRE (Irete Meji / Osa Ogunda)"></textarea>
 
-      <label>Incarnation Objective</label>
-      <textarea id="incarnationObjective" placeholder="Example: Lack of faith, doubtfulness, and ignorance of the Divine Plan give rise to the misuse of intelligence..."></textarea>
+        <label>Khemetic Heading</label>
+        <input type="text" id="khemeticHeading" value="Tehuti" />
 
-      <label>Orisha Head</label>
-      <input type="text" id="orishaHead" placeholder="Example: Oya" />
+        <label>Khemetic Pair / Polarity</label>
+        <input type="text" id="khemeticPair" placeholder="Example: Amen(-) / Sebek(+)" />
 
-      <label>Orisha Feet</label>
-      <input type="text" id="orishaFeet" placeholder="Example: Obatala" />
+        <label>Incarnation Objective</label>
+        <textarea id="incarnationObjective" placeholder="Example: Lack of faith, doubtfulness, and ignorance of the Divine Plan give rise to the misuse of intelligence..."></textarea>
 
-      <label>Orisha Name</label>
-      <input type="text" id="orishaName" placeholder="Example: @name" />
+        <label>Orisha Head</label>
+        <input type="text" id="orishaHead" placeholder="Example: Oya" />
 
-      <label>Khemetic Name</label>
-      <input type="text" id="khemeticName" placeholder="Example: pending" />
+        <label>Orisha Feet</label>
+        <input type="text" id="orishaFeet" placeholder="Example: Obatala" />
 
-      <label>Special Callings</label>
-      <textarea id="specialCallings" placeholder="Example: Divination, healing, teaching, initiation, devotion, protection..."></textarea>
+        <label>Orisha Name</label>
+        <input type="text" id="orishaName" placeholder="Example: @name" />
 
-      <label>Closing Message</label>
-      <textarea id="closingMessage">The Oba, Awos, Queen Mothers, priests, priestesses, and Iyawos welcome you to your destiny.
+        <label>Khemetic Name</label>
+        <input type="text" id="khemeticName" placeholder="Example: pending" />
+
+        <label>Special Callings</label>
+        <textarea id="specialCallings" placeholder="Example: Divination, healing, teaching, initiation, devotion, protection..."></textarea>
+
+        <label>Recommended Ebo / Ritual / Practice</label>
+        <textarea id="eboPractice" placeholder="Example: Prayer, offering, cleansing, study, service, restraint, sacrifice, or follow-up divination."></textarea>
+
+        <label>Closing Message</label>
+        <textarea id="closingMessage">The Oba, Awos, Queen Mothers, priests, priestesses, and Iyawos welcome you to your destiny.
 
 We see you and are proud of your efforts.</textarea>
 
-      <button type="button" onclick="generateTable()">Generate Destiny Table</button>
-      <button type="button" class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+        <button type="button" onclick="generateTable()">Generate Destiny Table</button>
+        <button type="button" class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+      </div>
     </form>
 
     <!-- GENERATED TABLE -->
@@ -334,9 +406,10 @@ We see you and are proud of your efforts.</textarea>
       <table class="destiny-table">
         <tr>
           <td class="label-cell">
-            <div class="big-title">Oracles</div>
+            <div class="big-title" id="outOracleTitle">Oracles</div>
             <div class="subbox" id="outIleke">Ileke</div>
             <div class="subbox" id="outSupportive">Supportive</div>
+            <div class="subbox" id="outBirth">Birth Data</div>
           </td>
 
           <td class="orunmila-cell tall">
@@ -378,14 +451,19 @@ We see you and are proud of your efforts.</textarea>
               <strong>Special Callings:</strong>
               <span id="outSpecialCallings">.</span>
             </p>
+
+            <p>
+              <strong>Ebo / Ritual / Practice:</strong>
+              <span id="outEboPractice">.</span>
+            </p>
           </td>
         </tr>
       </table>
 
       <div class="footer-message" id="outClosingMessage">
-        The Oba, Awos, Queen Mothers, priests, priestesses, and Iyawos provided valuable insights regarding the process of moving towards your destiny.
-        <br><br>
-        We see you and are proud of your efforts.
+The Oba, Awos, Queen Mothers, priests, priestesses, and Iyawos provided valuable insights regarding the process of moving towards your destiny.
+
+We see you and are proud of your efforts.
       </div>
 
       <div class="copyright">
@@ -403,6 +481,8 @@ function clean(value, fallback) {
 
 function generateTable() {
   const seekerName = clean(document.getElementById("seekerName").value, "");
+  const seekerBirth = clean(document.getElementById("seekerBirth").value, "");
+  const seekerQuestion = clean(document.getElementById("seekerQuestion").value, "");
   const oracleCategory = clean(document.getElementById("oracleCategory").value, "Oracles");
   const ileke = clean(document.getElementById("ileke").value, "Ileke / Supportive");
 
@@ -420,14 +500,16 @@ function generateTable() {
   const orishaName = clean(document.getElementById("orishaName").value, "@name");
   const khemeticName = clean(document.getElementById("khemeticName").value, "pending");
   const specialCallings = clean(document.getElementById("specialCallings").value, ".");
+  const eboPractice = clean(document.getElementById("eboPractice").value, ".");
 
   const closingMessage = clean(document.getElementById("closingMessage").value,
     "The Oba, Awos, Queen Mothers, priests, priestesses, and Iyawos provided valuable insights regarding the process of moving towards your destiny.\n\nWe see you and are proud of your efforts."
   );
 
-  document.querySelector(".big-title").innerText = oracleCategory;
+  document.getElementById("outOracleTitle").innerText = oracleCategory;
   document.getElementById("outIleke").innerText = ileke;
   document.getElementById("outSupportive").innerText = seekerName ? "Seeker: " + seekerName : "Supportive";
+  document.getElementById("outBirth").innerText = seekerBirth ? "Birth: " + seekerBirth : "Birth Data";
 
   document.getElementById("outOrunmilaHeading").innerText = orunmilaHeading;
   document.getElementById("outPrimaryOdu").innerText = primaryOdu;
@@ -443,8 +525,15 @@ function generateTable() {
   document.getElementById("outOrishaName").innerText = orishaName;
   document.getElementById("outKhemeticName").innerText = khemeticName;
   document.getElementById("outSpecialCallings").innerText = specialCallings;
+  document.getElementById("outEboPractice").innerText = eboPractice;
 
-  document.getElementById("outClosingMessage").innerText = closingMessage;
+  let finalMessage = closingMessage;
+
+  if (seekerQuestion !== "") {
+    finalMessage += "\n\nSeeker's stated concern: " + seekerQuestion;
+  }
+
+  document.getElementById("outClosingMessage").innerText = finalMessage;
 }
 </script>
 
