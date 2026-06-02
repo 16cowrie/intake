@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SGI Divination Intake Form</title>
+
+<style>
+  :root {
+    --bg: #111;
+    --panel: #161616;
+    --grid: #555;
+    --red: #f20808;
+    --blue: #12a9e8;
+    --white: #fff;
+    --muted: #ccc;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050505;
+    color: var(--white);
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  header {
+    text-align: center;
+    padding: 22px 10px;
+    border-bottom: 2px solid #333;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: var(--white);
+  }
+
+  header p {
+    margin: 10px auto 0;
+    max-width: 780px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .sgi-note {
+    color: #ff3333;
+    font-weight: bold;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 24px;
+    margin-top: 25px;
+  }
+
+  form {
+    background: var(--panel);
+    border: 1px solid #333;
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  form h2 {
+    margin-top: 0;
+    color: var(--blue);
+  }
+
+  label {
+    display: block;
+    margin-top: 14px;
+    font-weight: bold;
+    color: #eee;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 6px;
+    padding: 10px;
+    border: 1px solid #444;
+    background: #0b0b0b;
+    color: white;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+
+  button {
+    margin-top: 18px;
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: var(--red);
+    color: white;
+    font-size: 1.05rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #c80000;
+  }
+
+  .print-btn {
+    background: var(--blue);
+  }
+
+  .print-btn:hover {
+    background: #087eaf;
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid #333;
+    padding: 18px;
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+
+  .destiny-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background: #090909;
+  }
+
+  .destiny-table td {
+    border: 3px solid var(--grid);
+    vertical-align: top;
+    padding: 8px;
+    word-wrap: break-word;
+  }
+
+  .label-cell {
+    width: 30%;
+    background: #111;
+    color: var(--white);
+    font-size: 1.35rem;
+    font-weight: bold;
+  }
+
+  .orunmila-cell {
+    width: 38%;
+    background: var(--red);
+    color: var(--white);
+  }
+
+  .tehuti-cell {
+    width: 32%;
+    background: var(--blue);
+    color: var(--white);
+  }
+
+  .big-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  .subbox {
+    border: 3px solid #555;
+    padding: 6px;
+    margin-top: 6px;
+    min-height: 24px;
+  }
+
+  .tall {
+    min-height: 220px;
+  }
+
+  .wide-red {
+    background: var(--red);
+    color: white;
+  }
+
+  .footer-message {
+    margin-top: 25px;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: #f5f5f5;
+  }
+
+  .copyright {
+    text-align: center;
+    margin-top: 25px;
+    color: #aaa;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 850px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+
+    .label-cell {
+      font-size: 1.15rem;
+    }
+
+    .big-title {
+      font-size: 1.45rem;
+    }
+  }
+
+  @media print {
+    body {
+      background: white;
+    }
+
+    form, header, .print-btn, button {
+      display: none;
+    }
+
+    .wrap, .card {
+      padding: 0;
+      margin: 0;
+      border: none;
+      max-width: none;
+    }
+
+    .layout {
+      display: block;
+    }
+
+    .destiny-table {
+      page-break-inside: avoid;
+    }
+
+    .footer-message, .copyright {
+      color: black;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <header>
+    <h1>SwamiG Institute Divination Intake Form</h1>
+    <p>
+      This intake gathers Orisha, Odu, Khemetic, and incarnation-objective information
+      so SGI can generate a visual divination table for seekers, Iyawos, initiates, and students.
+    </p>
+    <p class="sgi-note">Heaven is home. Earth is its marketplace.</p>
+  </header>
+
+  <div class="layout">
+
+    <!-- INTAKE FORM -->
+    <form id="intakeForm">
+      <h2>Intake Information</h2>
+
+      <label>Seeker / Initiate Name</label>
+      <input type="text" id="seekerName" placeholder="Example: Baba SwamiG" />
+
+      <label>Oracle Category</label>
+      <select id="oracleCategory">
+        <option>Oracles</option>
+        <option>Ileke</option>
+        <option>Supportive</option>
+        <option>Orisha Head</option>
+        <option>Orisha Feet</option>
+        <option>Spiritual Name</option>
+      </select>
+
+      <label>Ileke / Initiation Status</label>
+      <input type="text" id="ileke" placeholder="Example: Ileke / Supportive / Warriors / Hand of Ifa" />
+
+      <label>Orunmila Heading</label>
+      <input type="text" id="orunmilaHeading" value="Orunmila" />
+
+      <label>Primary Odu</label>
+      <input type="text" id="primaryOdu" placeholder="Example: Obara / Irete" />
+
+      <label>Supporting Odu / Composite Odu</label>
+      <textarea id="supportingOdu" placeholder="Example: Obara/Irete IRE (Irete Meji / Osa Ogunda)"></textarea>
+
+      <label>Khemetic Heading</label>
+      <input type="text" id="khemeticHeading" value="Tehuti" />
+
+      <label>Khemetic Pair / Polarity</label>
+      <input type="text" id="khemeticPair" placeholder="Example: Amen(-) / Sebek(+)" />
+
+      <label>Incarnation Objective</label>
+      <textarea id="incarnationObjective" placeholder="Example: Lack of faith, doubtfulness, and ignorance of the Divine Plan give rise to the misuse of intelligence..."></textarea>
+
+      <label>Orisha Head</label>
+      <input type="text" id="orishaHead" placeholder="Example: Oya" />
+
+      <label>Orisha Feet</label>
+      <input type="text" id="orishaFeet" placeholder="Example: Obatala" />
+
+      <label>Orisha Name</label>
+      <input type="text" id="orishaName" placeholder="Example: @name" />
+
+      <label>Khemetic Name</label>
+      <input type="text" id="khemeticName" placeholder="Example: pending" />
+
+      <label>Special Callings</label>
+      <textarea id="specialCallings" placeholder="Example: Divination, healing, teaching, initiation, devotion, protection..."></textarea>
+
+      <label>Closing Message</label>
+      <textarea id="closingMessage">The Oba, Awos, Queen Mothers, priests, priestesses, and Iyawos provided valuable insights regarding the process of moving towards your destiny.
+
+We see you and are proud of your efforts.</textarea>
+
+      <button type="button" onclick="generateTable()">Generate Destiny Table</button>
+      <button type="button" class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+    </form>
+
+    <!-- GENERATED TABLE -->
+    <div class="card" id="outputArea">
+      <table class="destiny-table">
+        <tr>
+          <td class="label-cell">
+            <div class="big-title">Oracles</div>
+            <div class="subbox" id="outIleke">Ileke</div>
+            <div class="subbox" id="outSupportive">Supportive</div>
+          </td>
+
+          <td class="orunmila-cell tall">
+            <div class="big-title" id="outOrunmilaHeading">Orunmila</div>
+            <div class="subbox" id="outPrimaryOdu">Primary Odu</div>
+            <div class="subbox" id="outSupportingOdu">Supporting Odu</div>
+          </td>
+
+          <td class="tehuti-cell tall">
+            <div class="big-title" id="outKhemeticHeading">Tehuti</div>
+            <div class="subbox" id="outKhemeticPair">Khemetic Pair</div>
+            <div class="subbox" id="outIncarnationObjective">Incarnation Objective</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="label-cell">Orisha<br>Head</td>
+          <td class="orunmila-cell" id="outOrishaHead">Orisha Head</td>
+          <td class="label-cell"></td>
+        </tr>
+
+        <tr>
+          <td class="label-cell">Orisha<br>Feet</td>
+          <td colspan="2" class="wide-red" id="outOrishaFeet">Orisha Feet</td>
+        </tr>
+
+        <tr>
+          <td class="label-cell">Spiritual<br>Name</td>
+          <td colspan="2" class="wide-red">
+            <p>
+              <strong>Orisha Name:</strong>
+              <span id="outOrishaName">@name</span>
+              &nbsp;&nbsp;
+              <strong>Khemetic Name:</strong>
+              <span id="outKhemeticName">pending</span>
+            </p>
+
+            <p>
+              <strong>Special Callings:</strong>
+              <span id="outSpecialCallings">.</span>
+            </p>
+          </td>
+        </tr>
+      </table>
+
+      <div class="footer-message" id="outClosingMessage">
+        The Oba, Awos, Queen Mothers, priests, priestesses, and Iyawos provided valuable insights regarding the process of moving towards your destiny.
+        <br><br>
+        We see you and are proud of your efforts.
+      </div>
+
+      <div class="copyright">
+        Copyright © 2026 SwamiG Institute
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function clean(value, fallback) {
+  return value && value.trim() !== "" ? value.trim() : fallback;
+}
+
+function generateTable() {
+  const seekerName = clean(document.getElementById("seekerName").value, "");
+  const oracleCategory = clean(document.getElementById("oracleCategory").value, "Oracles");
+  const ileke = clean(document.getElementById("ileke").value, "Ileke / Supportive");
+
+  const orunmilaHeading = clean(document.getElementById("orunmilaHeading").value, "Orunmila");
+  const primaryOdu = clean(document.getElementById("primaryOdu").value, "Primary Odu");
+  const supportingOdu = clean(document.getElementById("supportingOdu").value, "Supporting Odu");
+
+  const khemeticHeading = clean(document.getElementById("khemeticHeading").value, "Tehuti");
+  const khemeticPair = clean(document.getElementById("khemeticPair").value, "Khemetic Pair");
+  const incarnationObjective = clean(document.getElementById("incarnationObjective").value, "Incarnation Objective");
+
+  const orishaHead = clean(document.getElementById("orishaHead").value, "Orisha Head");
+  const orishaFeet = clean(document.getElementById("orishaFeet").value, "Orisha Feet");
+
+  const orishaName = clean(document.getElementById("orishaName").value, "@name");
+  const khemeticName = clean(document.getElementById("khemeticName").value, "pending");
+  const specialCallings = clean(document.getElementById("specialCallings").value, ".");
+
+  const closingMessage = clean(document.getElementById("closingMessage").value,
+    "The Oba, Awos, Queen Mothers, priests, priestesses, and Iyawos provided valuable insights regarding the process of moving towards your destiny.\n\nWe see you and are proud of your efforts."
+  );
+
+  document.querySelector(".big-title").innerText = oracleCategory;
+  document.getElementById("outIleke").innerText = ileke;
+  document.getElementById("outSupportive").innerText = seekerName ? "Seeker: " + seekerName : "Supportive";
+
+  document.getElementById("outOrunmilaHeading").innerText = orunmilaHeading;
+  document.getElementById("outPrimaryOdu").innerText = primaryOdu;
+  document.getElementById("outSupportingOdu").innerText = supportingOdu;
+
+  document.getElementById("outKhemeticHeading").innerText = khemeticHeading;
+  document.getElementById("outKhemeticPair").innerText = khemeticPair;
+  document.getElementById("outIncarnationObjective").innerText = incarnationObjective;
+
+  document.getElementById("outOrishaHead").innerText = orishaHead;
+  document.getElementById("outOrishaFeet").innerText = orishaFeet;
+
+  document.getElementById("outOrishaName").innerText = orishaName;
+  document.getElementById("outKhemeticName").innerText = khemeticName;
+  document.getElementById("outSpecialCallings").innerText = specialCallings;
+
+  document.getElementById("outClosingMessage").innerText = closingMessage;
+}
+</script>
+
+</body>
+</html>
